@@ -10,21 +10,20 @@
 			"name": "Feature:Login",
 			"item": [
 				{
-					"name": "LoginAPI",
+					"name": "POST",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"const jsonData = pm.response\r",
 									"\r",
-									"//console.log(jsonData)\r",
+									"var jsonData = pm.response.json();\r",
 									"\r",
-									"//var scvalue = jsonData.code\r",
+									"console.log(jsonData)     //To print entire api response\r",
 									"\r",
-									"var scvalue = pm.variables.get(\"ExpectedStatuscode\");\r",
-									"//console.log(\"In test statuscode value\" + scvalue)\r",
-									"switch (scvalue) {\r",
+									"var ExpectedStatuscode = pm.variables.get(\"ExpectedStatuscode\");\r",
+									"\r",
+									"switch (ExpectedStatuscode) {\r",
 									"\r",
 									"    case 200:\r",
 									"        \r",
@@ -47,14 +46,19 @@
 									"\r",
 									"        });\r",
 									"        break;\r",
+									"\t\r",
+									"    case 500:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(500);\r",
 									"\r",
+									"        });\r",
+									"        break;\t\r",
+									"        \r",
 									"    default:\r",
-									"        console.log(scvalue)\r",
+									"        console.log(ExpectedStatuscode)\r",
 									"        break;\r",
 									"\r",
-									"}\r",
-									"\r",
-									""
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -74,9 +78,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{QAENV}}/api/master/login",
+							"raw": "{{BaseURI}}/api/master/login",
 							"host": [
-								"{{QAENV}}"
+								"{{BaseURI}}"
 							],
 							"path": [
 								"api",
@@ -176,9 +180,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{QAENV}}/api/master/patient",
+							"raw": "{{BaseURI}}/api/master/patient",
 							"host": [
-								"{{QAENV}}"
+								"{{BaseURI}}"
 							],
 							"path": [
 								"api",
@@ -287,9 +291,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{QAENV}}/api/master/patient?page=0&size=20&sortBy=created&sortDirection=desc",
+							"raw": "{{BaseURI}}/api/master/patient?page=0&size=20&sortBy=created&sortDirection=desc",
 							"host": [
-								"{{QAENV}}"
+								"{{BaseURI}}"
 							],
 							"path": [
 								"api",
@@ -387,9 +391,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{QAENV}}/api/master/patient/{{uuid}}",
+							"raw": "{{BaseURI}}/api/master/patient/{{uuid}}",
 							"host": [
-								"{{QAENV}}"
+								"{{BaseURI}}"
 							],
 							"path": [
 								"api",
@@ -479,9 +483,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{QAENV}}/api/master/patient/{{uuid}}/active/true",
+							"raw": "{{BaseURI}}/api/master/patient/{{uuid}}/active/true",
 							"host": [
-								"{{QAENV}}"
+								"{{BaseURI}}"
 							],
 							"path": [
 								"api",
@@ -564,9 +568,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{QAENV}}/api/master/patient/{{uuid}}",
+							"raw": "{{BaseURI}}/api/master/patient/{{uuid}}",
 							"host": [
-								"{{QAENV}}"
+								"{{BaseURI}}"
 							],
 							"path": [
 								"api",
@@ -642,9 +646,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{QAENV}}/api/master/patient/{{uuid}}",
+							"raw": "{{BaseURI}}/api/master/patient/{{uuid}}",
 							"host": [
-								"{{QAENV}}"
+								"{{BaseURI}}"
 							],
 							"path": [
 								"api",
@@ -720,9 +724,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{QAENV}}/api/master/patient/{{uuid}}",
+							"raw": "{{BaseURI}}/api/master/patient/{{uuid}}",
 							"host": [
-								"{{QAENV}}"
+								"{{BaseURI}}"
 							],
 							"path": [
 								"api",
@@ -772,7 +776,9 @@
 					"        \r",
 					"\r",
 					"pm.collectionVariables.set(\"ExpectedStatuscode\", ExpectedStatuscode)\r",
-					"//console.log(\"ExpectedStatuscode set to collection variable & value is \" + ExpectedStatuscode);        "
+					"//console.log(\"ExpectedStatuscode set to collection variable & value is \" + ExpectedStatuscode);        \r",
+					"\r",
+					""
 				]
 			}
 		}
@@ -854,7 +860,7 @@
 			"value": "patil"
 		},
 		{
-			"key": "QAENV",
+			"key": "BaseURI",
 			"value": "https://qa-api.blueskytelepsychiatry.com",
 			"type": "string"
 		},
