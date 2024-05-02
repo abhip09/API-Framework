@@ -1,0 +1,866 @@
+{
+	"info": {
+		"_postman_id": "905fe6a7-59ff-4224-9247-f303ee9645a3",
+		"name": "Project_Bluesky",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27916442"
+	},
+	"item": [
+		{
+			"name": "Feature:Login",
+			"item": [
+				{
+					"name": "LoginAPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response\r",
+									"\r",
+									"//console.log(jsonData)\r",
+									"\r",
+									"//var scvalue = jsonData.code\r",
+									"\r",
+									"var scvalue = pm.variables.get(\"ExpectedStatuscode\");\r",
+									"//console.log(\"In test statuscode value\" + scvalue)\r",
+									"switch (scvalue) {\r",
+									"\r",
+									"    case 200:\r",
+									"        \r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(200);\r",
+									"        });\r",
+									"\r",
+									"        break;\r",
+									"\r",
+									"    case 400:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(400);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 401:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(401);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    default:\r",
+									"        console.log(scvalue)\r",
+									"        break;\r",
+									"\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"{{username}}\",\r\n    \"password\" : \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{QAENV}}/api/master/login",
+							"host": [
+								"{{QAENV}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Feature:Patient",
+			"item": [
+				{
+					"name": "patientadd2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"const jsonData = pm.response\r",
+									"//console.log(jsonData)\r",
+									"var scvalue = jsonData.code\r",
+									"switch (scvalue) {\r",
+									"\r",
+									"    case 200:\r",
+									"        \r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(200);\r",
+									"        });\r",
+									"    \r",
+									"        pm.test(\"Verifying patient added successfully message\", function() {\r",
+									"            var jsonData = pm.response.json();\r",
+									"            pm.expect(jsonData.message).to.eql(\"Patient added successfully\");\r",
+									"        });\r",
+									"\r",
+									"        break;\r",
+									"\r",
+									"    case 400:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(400);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 401:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(401);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    default:\r",
+									"        console.log(scvalue)\r",
+									"        break;\r",
+									"\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"firstName\": \"{{firstName}}\",\r\n    \"lastName\":\"{{lastName}}\",\r\n    \"phone\": \"+91{{phone}}\",\r\n    \"birthDate\": \"1999-02-05\",\r\n    \"gender\": \"MALE\",\r\n    \"emergContactFirstName\": \"Hemant\",\r\n    \"emergContactLastName\": \"kaustubh\",\r\n    \"emergContactNumber\": \"+12333333444\",\r\n    \"messageConsent\": true,\r\n    \"callConsent\": true,\r\n    \"emailConsent\": true,\r\n    \"active\": true,\r\n    \"address\": {\r\n        \"line1\": \"state street\",\r\n        \"line2\": \"string\",\r\n        \"city\": \"Texas\",\r\n        \"country\":\"US\",\r\n        \"state\": \"GA\",\r\n        \"zipcode\": \"30515\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{QAENV}}/api/master/patient",
+							"host": [
+								"{{QAENV}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Allpatientdata2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// console.log(pm.environment.get(\"randomemail\"))\r",
+									"\r",
+									"    var jsonData = pm.response.json();\r",
+									"\t\tuuid= jsonData.data.content[0].uuid\r",
+									"    pm.collectionVariables.set(\"uuid\",uuid)\r",
+									"\t\tconsole.log(uuid)\r",
+									"\r",
+									"const jsonData1 = pm.response\r",
+									"//console.log(jsonData)\r",
+									"var scvalue = jsonData1.code\r",
+									"switch (scvalue) {\r",
+									"\r",
+									"    case 200:\r",
+									"        \r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(200);\r",
+									"        });\r",
+									"    \r",
+									"        pm.test(\"verifying generated patient email\", function() {\r",
+									"            var jsonData = pm.response.json();\r",
+									"            pm.expect(jsonData.data.content[0].email).to.eql(\"anuja10@gmail.com\");\r",
+									"        });\r",
+									"\r",
+									"        pm.test(\"verifying generated patient firstNme\", function() {\r",
+									"            var jsonData = pm.response.json();\r",
+									"            pm.expect(jsonData.data.content[0].email).to.eql(\"Anujaa\");\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 400:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(400);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 401:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(401);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    default:\r",
+									"        console.log(scvalue)\r",
+									"        break;\r",
+									"\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{QAENV}}/api/master/patient?page=0&size=20&sortBy=created&sortDirection=desc",
+							"host": [
+								"{{QAENV}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								},
+								{
+									"key": "sortBy",
+									"value": "created"
+								},
+								{
+									"key": "sortDirection",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_by_uuid2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData1 = pm.response\r",
+									"//console.log(jsonData)\r",
+									"var scvalue = jsonData1.code\r",
+									"switch (scvalue) {\r",
+									"\r",
+									"    case 200:\r",
+									"        \r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(200);\r",
+									"        });\r",
+									"    \r",
+									"        pm.test(\"\", function() {\r",
+									"            var jsonData = pm.response.json();\r",
+									"            pm.expect(jsonData.data.email).to.eql(\"anuja10@gmail.com\");\r",
+									"        });\r",
+									"\r",
+									"        pm.test(\"\", function() {\r",
+									"            var jsonData = pm.response.json();\r",
+									"            pm.expect(jsonData.data.firstName).to.eql(\"Anujaa\");\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 400:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(400);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 401:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(401);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    default:\r",
+									"        console.log(scvalue)\r",
+									"        break;\r",
+									"\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{QAENV}}/api/master/patient/{{uuid}}",
+							"host": [
+								"{{QAENV}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient",
+								"{{uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_patientdata",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData1 = pm.response\r",
+									"//console.log(jsonData)\r",
+									"var scvalue = jsonData1.code\r",
+									"switch (scvalue) {\r",
+									"\r",
+									"    case 200:\r",
+									"        \r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(200);\r",
+									"        });\r",
+									"    \r",
+									"        pm.test(\"\", function() {\r",
+									"            var jsonData = pm.response.json();\r",
+									"            pm.expect(jsonData.data.email).to.eql(\"chirag4@gmail.com\");\r",
+									"        });\r",
+									"\r",
+									"        pm.test(\"\", function() {\r",
+									"            var jsonData = pm.response.json();\r",
+									"            pm.expect(jsonData.data.firstName).to.eql(\"chirag\");\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 400:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(400);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 401:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(401);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    default:\r",
+									"        console.log(scvalue)\r",
+									"        break;\r",
+									"\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{updatedemail}}\",\r\n    \"firstName\": \"{{updatedfirstName}}\",\r\n    \"lastName\": \"{{updatedlastName}}\",\r\n    \"phone\": \"+{{updatedphone}}\",\r\n    \"birthDate\": \"2024-01-02\",\r\n    \"gender\": \"MALE\",\r\n    \"emergContactFirstName\": \"\",\r\n    \"emergContactLastName\": \"\",\r\n    \"emergContactNumber\": \"+\",\r\n    \"messageConsent\": true,\r\n    \"callConsent\": true,\r\n    \"emailConsent\": true,\r\n    \"active\": true,\r\n    \"address\": {\r\n        \"line1\": \"state street\",\r\n        \"line2\": \"string\",\r\n        \"city\": \"{{city}}\",\r\n        \"country\":\"{{country}}\",\r\n        \"state\": \"{{state}}\",\r\n        \"zipcode\": \"{{zipcode}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{QAENV}}/api/master/patient/{{uuid}}/active/true",
+							"host": [
+								"{{QAENV}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient",
+								"{{uuid}}",
+								"active",
+								"true"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_afterupdating",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData1 = pm.response\r",
+									"//console.log(jsonData)\r",
+									"var scvalue = jsonData1.code\r",
+									"switch (scvalue) {\r",
+									"\r",
+									"    case 200:\r",
+									"        \r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(200);\r",
+									"        });\r",
+									"    \r",
+									"        pm.test(\"\", function() {\r",
+									"            var jsonData = pm.response.json();\r",
+									"            pm.expect(jsonData.data.email).to.eql(\"chirag4@gmail.com\");\r",
+									"        });\r",
+									"\r",
+									"        pm.test(\"\", function() {\r",
+									"            var jsonData = pm.response.json();\r",
+									"            pm.expect(jsonData.data.firstName).to.eql(\"chirag\");\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 400:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(400);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 401:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(401);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    default:\r",
+									"        console.log(scvalue)\r",
+									"        break;\r",
+									"\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{QAENV}}/api/master/patient/{{uuid}}",
+							"host": [
+								"{{QAENV}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient",
+								"{{uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_patient2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response\r",
+									"//console.log(jsonData)\r",
+									"var scvalue = jsonData.code\r",
+									"switch (scvalue) {\r",
+									"\r",
+									"    case 200:\r",
+									"        \r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(200);\r",
+									"        });\r",
+									"    \r",
+									"        pm.test(\"Patient deleted successfully\", function() {\r",
+									"            var jsonData = pm.response.json();\r",
+									"            pm.expect(jsonData.message).to.eql(\"Patient deleted successfully\");\r",
+									"        });\r",
+									"\r",
+									"        break;\r",
+									"\r",
+									"    case 400:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(400);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 401:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(401);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    default:\r",
+									"        console.log(scvalue)\r",
+									"        break;\r",
+									"\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{QAENV}}/api/master/patient/{{uuid}}",
+							"host": [
+								"{{QAENV}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient",
+								"{{uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Afterdeleting_patient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response\r",
+									"//console.log(jsonData)\r",
+									"var scvalue = jsonData.code\r",
+									"switch (scvalue) {\r",
+									"\r",
+									"    case 200:\r",
+									"        \r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(200);\r",
+									"        });\r",
+									"    \r",
+									"        pm.test(\"Verifying patient not found message\", function() {\r",
+									"            var jsonData = pm.response.json();\r",
+									"            pm.expect(jsonData.message).to.eql(\"Patient not found\");\r",
+									"        });\r",
+									"\r",
+									"        break;\r",
+									"\r",
+									"    case 400:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(400);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    case 401:\r",
+									"        pm.test(\"Test passed succesully!\", function() {\r",
+									"            pm.response.to.have.status(401);\r",
+									"\r",
+									"        });\r",
+									"        break;\r",
+									"\r",
+									"    default:\r",
+									"        console.log(scvalue)\r",
+									"        break;\r",
+									"\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{QAENV}}/api/master/patient/{{uuid}}",
+							"host": [
+								"{{QAENV}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient",
+								"{{uuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"//Getting Request Name from CSV file.\r",
+					"var RequestName = pm.iterationData.get(\"RequestName\")\r",
+					"//console.log(RequestName)\r",
+					"\r",
+					"//Current collection execution request name.\r",
+					"//console.log(pm.info.requestName)\r",
+					"\r",
+					"//If CSV file and current collection execution is same then execute else skip execution.\r",
+					"if (RequestName !== pm.info.requestName){\r",
+					"    console.log(\"skipping this request\")\r",
+					"    pm.execution.skipRequest()\r",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"//Getting Request Name from CSV file.\r",
+					"var ExpectedStatuscode = pm.iterationData.get(\"ExpectedStatuscode\")\r",
+					"//console.log(ExpectedStatuscode)\r",
+					"\r",
+					"        \r",
+					"\r",
+					"pm.collectionVariables.set(\"ExpectedStatuscode\", ExpectedStatuscode)\r",
+					"//console.log(\"ExpectedStatuscode set to collection variable & value is \" + ExpectedStatuscode);        "
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": "tushar.bhadane+frontdesk@thinkitive.com",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "password",
+			"value": "Bluesky@123",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "access",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "email12@mailonator.com",
+			"disabled": true
+		},
+		{
+			"key": "phone",
+			"value": "914222002485"
+		},
+		{
+			"key": "birthDate",
+			"value": "2024-04-25"
+		},
+		{
+			"key": "emergContactFirstName",
+			"value": "jacks"
+		},
+		{
+			"key": "emergContactLastName",
+			"value": "Woods"
+		},
+		{
+			"key": "emergContactNumber",
+			"value": "914512580978"
+		},
+		{
+			"key": "city",
+			"value": "Omaha"
+		},
+		{
+			"key": "country",
+			"value": "US"
+		},
+		{
+			"key": "state",
+			"value": "GA"
+		},
+		{
+			"key": "zipcode",
+			"value": "14526"
+		},
+		{
+			"key": "uuid",
+			"value": ""
+		},
+		{
+			"key": "UUID",
+			"value": ""
+		},
+		{
+			"key": "firstnameadded",
+			"value": "nikhil",
+			"type": "string"
+		},
+		{
+			"key": "lastnameadded",
+			"value": "patil"
+		},
+		{
+			"key": "QAENV",
+			"value": "https://qa-api.blueskytelepsychiatry.com",
+			"type": "string"
+		},
+		{
+			"key": "ExpectedStatuscode",
+			"value": ""
+		}
+	]
+}
