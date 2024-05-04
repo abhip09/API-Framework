@@ -1,0 +1,313 @@
+{
+	"info": {
+		"_postman_id": "0fc4d8c8-b0a8-41a8-a8e7-ddc0c1fde59f",
+		"name": "API Testing Framework",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34683581"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login-POST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"//console.log(jsonData) //To print entire api response\r",
+									"\r",
+									"var ExpectedStatuscode = pm.variables.get(\"ExpectedStatuscode\");\r",
+									"var TestScenarioSummary = pm.iterationData.get(\"Test Scenario Summary\")\r",
+									"\r",
+									"switch (ExpectedStatuscode) {\r",
+									"\r",
+									"    case 200:        \r",
+									"\r",
+									"        pm.test(TestScenarioSummary, function() {\r",
+									"            pm.response.to.have.status(200);\r",
+									"            //pm.expect(ExpectedStatuscode).to.match(pm.response.code)\r",
+									"        });\r",
+									"\r",
+									"        break;\r",
+									"\r",
+									"    case 400:\r",
+									"        \r",
+									"        break;\r",
+									"\r",
+									"    case 401:\r",
+									"        \r",
+									"        break;\r",
+									"\r",
+									"    case 500:\r",
+									"        \r",
+									"        break;\r",
+									"\r",
+									"    default:\r",
+									"        console.log(ExpectedStatuscode)\r",
+									"        break;\r",
+									"\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"tushar.bhadane+frontdesk@thinkitive.com\",\r\n    \"password\" : \"Bluesky@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-api.blueskytelepsychiatry.com/api/master/login",
+							"protocol": "https",
+							"host": [
+								"qa-api",
+								"blueskytelepsychiatry",
+								"com"
+							],
+							"path": [
+								"api",
+								"master",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"/*\r",
+							"var Flag = pm.iterationData.get(\"Flag\")\r",
+							"\r",
+							"if (Flag === \"TestData\"){\r",
+							"    //console.log(\"skipping this request to add Test Data\")\r",
+							"    pm.execution.skipRequest()\r",
+							"}\r",
+							"\r",
+							"//Task-3 Match Request name for execution – skip if doesnot match with input file\r",
+							"\r",
+							"var RequestName = pm.iterationData.get(\"RequestName\")\r",
+							"console.log(RequestName)\r",
+							"\r",
+							"if (RequestName !== pm.info.requestName){\r",
+							"    console.log(\"skipping this request since in this iteration request name is not matched\")\r",
+							"    pm.execution.skipRequest()\r",
+							"}\r",
+							"\r",
+							"//===============================================\r",
+							"\r",
+							"\r",
+							"//Task-3 Match Request name for execution – skip if doesnot match with input file\r",
+							"\r",
+							"var Flag = pm.iterationData.get(\"Flag\")\r",
+							"var RequestName = pm.iterationData.get(\"RequestName\")\r",
+							"\r",
+							"if (Flag === \"TestData\" || RequestName !== pm.info.requestName){\r",
+							"\r",
+							"    pm.execution.skipRequest()\r",
+							"\r",
+							"    console.log(\"skipping this request since in this iteration request name is not matched\")\r",
+							"\r",
+							"}\r",
+							"*/"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Patient-POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"tushar.bhadane+frontdesk@thinkitive.com\",\r\n    \"password\" : \"Bluesky@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-api.blueskytelepsychiatry.com/api/master/login",
+							"protocol": "https",
+							"host": [
+								"qa-api",
+								"blueskytelepsychiatry",
+								"com"
+							],
+							"path": [
+								"api",
+								"master",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"/*\r",
+							"var Flag = pm.iterationData.get(\"Flag\")\r",
+							"\r",
+							"if (Flag === \"TestData\"){\r",
+							"    //console.log(\"skipping this request to add Test Data\")\r",
+							"    pm.execution.skipRequest()\r",
+							"}\r",
+							"\r",
+							"console.log(\"Abhijit - Executed just this one!\")\r",
+							"*/"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"//Task-1 Creation of Two dimensional array\r",
+					"if (pm.info.iteration === 0) {\r",
+					"\r",
+					"    console.clear()\r",
+					"\r",
+					"    let twoDarray = [];\r",
+					"    let rows = 4;\r",
+					"    let columns = 7;\r",
+					"\r",
+					"    // creating two-dimensional array\r",
+					"    for (let i = 0; i < rows; i++) {\r",
+					"        twoDarray[i] = [];\r",
+					"        for (let j = 0; j < columns; j++) {\r",
+					"            twoDarray[i][j] = j;\r",
+					"        }\r",
+					"    }\r",
+					"\r",
+					"    //console.log(twoDarray);\r",
+					"\r",
+					"    pm.collectionVariables.set(\"twoDarray\", twoDarray)\r",
+					"\r",
+					"}\r",
+					"\r",
+					"\r",
+					"//Task-2 Addition of all test data into twoDarray\r",
+					"\r",
+					"var Flag = pm.iterationData.get(\"Flag\")\r",
+					"//console.log(Flag)\r",
+					"\r",
+					"if (Flag === \"TestData\") {\r",
+					"\r",
+					"    console.log(\"Test data addition is in-progress so skipping the request\")\r",
+					"\r",
+					"    twoDarray = pm.collectionVariables.get(\"twoDarray\")\r",
+					"\r",
+					"\r",
+					"    var key0 = pm.iterationData.get(\"Flag\")\r",
+					"    var key1 = pm.iterationData.get(\"Feature Name\")\r",
+					"    var key2 = pm.iterationData.get(\"RequestName\")\r",
+					"    var key3 = pm.iterationData.get(\"Test Scenario Summary\")\r",
+					"    var key4 = pm.iterationData.get(\"ExpectedStatuscode\")\r",
+					"    var key5 = pm.iterationData.get(\"username\")\r",
+					"    var key6 = pm.iterationData.get(\"password\")\r",
+					"\r",
+					"    var currentiterationNumber = pm.info.iteration\r",
+					"\r",
+					"    twoDarray[currentiterationNumber][0] = key0;\r",
+					"    twoDarray[currentiterationNumber][1] = key1;\r",
+					"    twoDarray[currentiterationNumber][2] = key2;\r",
+					"    twoDarray[currentiterationNumber][3] = key3;\r",
+					"    twoDarray[currentiterationNumber][4] = key4;\r",
+					"    twoDarray[currentiterationNumber][5] = key5;\r",
+					"    twoDarray[currentiterationNumber][6] = key6;\r",
+					"\r",
+					"    pm.collectionVariables.set(\"twoDarray\", twoDarray)\r",
+					"\r",
+					"}\r",
+					"\r",
+					"//Task-3 Match Request name for execution – skip if doesnot match with input file\r",
+					"\r",
+					"var Flag = pm.iterationData.get(\"Flag\")\r",
+					"var RequestName = pm.iterationData.get(\"RequestName\")\r",
+					"\r",
+					"if (Flag === \"TestData\" || RequestName !== pm.info.requestName) {\r",
+					"\r",
+					"    pm.execution.skipRequest()\r",
+					"\r",
+					"    console.log(\"skipping this request since in this iteration request name is not matched\")\r",
+					"}\r",
+					"\r",
+					"//Task-4 Getting ExpectedStatuscode for current executing API from CSV file.\r",
+					"if (Flag === \"Run\") {\r",
+					"\r",
+					"    var ExpectedStatuscode = pm.iterationData.get(\"ExpectedStatuscode\")\r",
+					"    //console.log(ExpectedStatuscode)        \r",
+					"\r",
+					"    pm.collectionVariables.set(\"ExpectedStatuscode\", ExpectedStatuscode)\r",
+					"    //console.log(\"ExpectedStatuscode set to collection variable & value is \" + ExpectedStatuscode);        \r",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

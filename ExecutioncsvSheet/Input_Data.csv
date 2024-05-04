@@ -1,0 +1,7 @@
+Flag,Feature Name,RequestName,Test Scenario Summary,ExpectedStatuscode,username ,password  
+TestData,Login,POST,To verify when user enters valid credentials.,200,tushar.bhadane+frontdesk@thinkitive.com,Bluesky@123
+TestData,Login,POST,To validate when user have valid username but invalid password.,401,tushar.bhadane+frontdesk@thinkitive.com,Test@123
+TestData,Login,POST,To validate API response when user have invalid username & invalid password.,401,frontdesk@thinkitive.com,frontdesk@thinkitive.com
+TestData,Login,POST,To validate when user have invalid username but valid password.,401,frontdesk@thinkitive.com,Bluesky@123
+Run,Login,Login-POST,To verify when user enters valid credentials.,200,tushar.bhadane+frontdesk@thinkitive.com,Bluesky@123
+Run,Patient,Patient-POST,To verify when user enters valid credentials.,200,tushar.bhadane+frontdesk@thinkitive.com,Bluesky@123
