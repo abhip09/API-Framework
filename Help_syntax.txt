@@ -1,0 +1,53 @@
+
+let twoDarray = [];
+let rows = pm.info.iterationCount;
+let columns = 7;
+
+// creating two-dimensional array
+for (let i = 0; i < rows; i++) {
+  twoDarray[i] = [];
+  for (let j = 0; j < columns; j++) {
+    twoDarray[i][j] = j;
+  }
+}
+
+console.log(twoDarray);
+
+pm.collectionVariables.set("twoDarray", twoDarray)
+
+
+var Flag = pm.iterationData.get("Flag")
+
+if (Flag === "TestData"){
+    console.log("skipping this request")
+    pm.execution.skipRequest()
+}
+
+console.log("Abhijit check above")
+
+//==================================================================
+/*
+
+//console.log(pm.collectionVariables.get("row_1_csvdata"))
+//console.log("Above is getting from collection variables")
+//Getting Request Name from CSV file.
+var RequestName = pm.iterationData.get("RequestName")
+//console.log(RequestName)
+
+//Current collection execution request name.
+//console.log(pm.info.requestName)
+
+//If CSV file and current collection execution is same then execute else skip execution.
+if (RequestName !== pm.info.requestName){
+    console.log("skipping this request")
+    pm.execution.skipRequest()
+}
+
+//Getting ExpectedStatuscode for current executing API from CSV file.
+
+var ExpectedStatuscode = pm.iterationData.get("ExpectedStatuscode")
+console.log(ExpectedStatuscode)        
+
+pm.collectionVariables.set("ExpectedStatuscode", ExpectedStatuscode)
+//console.log("ExpectedStatuscode set to collection variable & value is " + ExpectedStatuscode);        
+*/

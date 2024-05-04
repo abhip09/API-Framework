@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "8e0c6015-045a-4d45-8fe1-e1d285481637",
+		"name": "practice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34683581"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"tushar.bhadane+frontdesk@thinkitive.com\",\r\n    \"password\" : \"Bluesky@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-api.blueskytelepsychiatry.com/api/master/login",
+							"protocol": "https",
+							"host": [
+								"qa-api",
+								"blueskytelepsychiatry",
+								"com"
+							],
+							"path": [
+								"api",
+								"master",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"\r",
+							"\r",
+							"//Task-2 Addition of all test data – skip if Flag is Test Data\r",
+							"\r",
+							"var Flag = pm.iterationData.get(\"Flag\")\r",
+							"console.log(Flag)\r",
+							"//if (Flag === \"Run\"){\r",
+							"\r",
+							"    console.log(\"Test data addition is in-progress so skipping the request\")\r",
+							"\r",
+							"    twoDarray = pm.collectionVariables.get(\"twoDarray\")\r",
+							"    \r",
+							"    \r",
+							"    var key0 = pm.iterationData.get(\"Flag\")\r",
+							"    var key1 = pm.iterationData.get(\"Feature Name\")\r",
+							"    var key2 = pm.iterationData.get(\"RequestName\")\r",
+							"    var key3 = pm.iterationData.get(\"Test Scenario Summary\")\r",
+							"    var key4 = pm.iterationData.get(\"ExpectedStatuscode\")\r",
+							"    var key5 = pm.iterationData.get(\"username\")\r",
+							"    var key6 = pm.iterationData.get(\"password\")\r",
+							"\r",
+							"    console.log(key0)\r",
+							"    console.log(key6)\r",
+							"\r",
+							"    var currentiterationNumber = pm.info.iteration\r",
+							"    console.log(currentiterationNumber)\r",
+							"\r",
+							"    \r",
+							"    twoDarray[currentiterationNumber][0] = key0;\r",
+							"    twoDarray[currentiterationNumber][1] = key1;\r",
+							"    twoDarray[currentiterationNumber][2] = key2;\r",
+							"    twoDarray[currentiterationNumber][3] = key3;\r",
+							"    twoDarray[currentiterationNumber][4] = key4;\r",
+							"    twoDarray[currentiterationNumber][5] = key5;\r",
+							"    twoDarray[currentiterationNumber][6] = key6;\r",
+							"  \r",
+							"    pm.collectionVariables.set(\"twoDarray\", twoDarray)\r",
+							"    \r",
+							"//}\r",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"\r",
+					"//Task-1 Creation of Two dimensional array\r",
+					"\r",
+					"if(pm.info.iteration === 0){\r",
+					"\r",
+					"    let twoDarray = [];\r",
+					"    let rows = pm.info.iterationCount;\r",
+					"    let columns = 7;\r",
+					"\r",
+					"    // creating two-dimensional array\r",
+					"    for (let i = 0; i < rows; i++) {\r",
+					"    twoDarray[i] = [];\r",
+					"    for (let j = 0; j < columns; j++) {\r",
+					"        twoDarray[i][j] = j;\r",
+					"    }\r",
+					"    }\r",
+					"\r",
+					"    console.log(twoDarray);\r",
+					"\r",
+					"    pm.collectionVariables.set(\"twoDarray\", twoDarray)\r",
+					"\r",
+					"}\r",
+					"\r",
+					"//-------------------------------------------------------------------\r",
+					"/*\r",
+					"var Flag = pm.iterationData.get(\"Flag\")\r",
+					"\r",
+					"if (Flag === \"TestData\"){\r",
+					"    console.log(\"skipping this request\")\r",
+					"    pm.execution.skipRequest()\r",
+					"}\r",
+					"*/"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "twoDarray",
+			"value": ""
+		}
+	]
+}
