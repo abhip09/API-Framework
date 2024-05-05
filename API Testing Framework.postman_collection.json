@@ -58,6 +58,8 @@
 									"\r",
 									"\r",
 									"pm.collectionVariables.set(\"access\",access)\r",
+									"\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript",
@@ -358,6 +360,7 @@
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
+					"\r",
 					"//Task-1 Creation of Two dimensional array\r",
 					"if (pm.info.iteration === 0) {\r",
 					"\r",
@@ -434,17 +437,17 @@
 					"console.log(Flag)\r",
 					"\r",
 					"\r",
-					"if (Flag === \"TestData\" || RequestName !== pm.info.requestName) {\r",
-					"    console.log(\"Abhijit check to skip command\")\r",
-					"    \r",
+					"if (Flag !== \"Run\" || RequestName !== pm.info.requestName) {\r",
+					"        \r",
 					"    console.log(\"skipping this request since in this iteration request name is not matched\")\r",
 					"\r",
 					"    pm.execution.skipRequest()\r",
+					"    \r",
 					"}\r",
 					"\r",
 					"//Task-4 Getting ExpectedStatuscode for current executing API from CSV file.\r",
 					"if (Flag === \"Run\") {\r",
-					"\r",
+					"    console.log(RequestName)\r",
 					"    var ExpectedStatuscode = pm.iterationData.get(\"ExpectedStatuscode\")\r",
 					"    //console.log(ExpectedStatuscode)        \r",
 					"\r",
@@ -476,7 +479,7 @@
 		},
 		{
 			"key": "access",
-			"value": "abc"
+			"value": ""
 		}
 	]
 }

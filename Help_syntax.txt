@@ -51,3 +51,39 @@ console.log(ExpectedStatuscode)
 pm.collectionVariables.set("ExpectedStatuscode", ExpectedStatuscode)
 //console.log("ExpectedStatuscode set to collection variable & value is " + ExpectedStatuscode);        
 */
+
+====================================================================================================
+
+
+Finding value in javascript 2D array :
+
+function findValueIn2DArray(array, targetValue) {
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < array[i].length; j++) {
+            if (array[i][j] === targetValue) {
+                return [i, j]; // Return the indices of the value
+            }
+        }
+    }
+    return null; // Value not found
+}
+
+const myArray = [
+    [2, 45],
+    [3, 56],
+    [5, 67],
+    [8, 98],
+    [6, 89],
+    [9, 89],
+    [5, 67]
+];
+
+const target = 9;
+const result = findValueIn2DArray(myArray, target);
+console.log(result)
+if (result) {
+    const [row, col] = result;
+    console.log(`Found ${target} at row ${row} and column ${col}.`);
+} else {
+    console.log(`${target} not found in the array.`);
+}
