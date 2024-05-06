@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "724dddc8-80ef-409f-ad8f-af95649b36e1",
+		"name": "ExternalBody",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13567395"
+	},
+	"item": [
+		{
+			"name": "externlbody",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"jsonbdy\", JSON.stringify(pm.iterationData.toObject()));"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{jsonbdy}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa-api.blueskytelepsychiatry.com/api/master/login",
+					"protocol": "https",
+					"host": [
+						"qa-api",
+						"blueskytelepsychiatry",
+						"com"
+					],
+					"path": [
+						"api",
+						"master",
+						"login"
+					]
+				},
+				"description": "\n### Login API\n\nThis API endpoint is used to authenticate and obtain access tokens for the user.\n\n#### Request Body\n- **username** (string, required): The username of the user.\n- **password** (string, required): The password of the user.\n\n#### Response\nThe response will be a JSON object with the following schema:\n```json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"date\": {\n            \"type\": \"string\"\n        },\n        \"code\": {\n            \"type\": \"string\"\n        },\n        \"message\": {\n            \"type\": [\"string\", \"null\"]\n        },\n        \"data\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"scope\": {\n                    \"type\": \"string\"\n                },\n                \"access_token\": {\n                    \"type\": \"string\"\n                },\n                \"expires_in\": {\n                    \"type\": \"number\"\n                },\n                \"token_type\": {\n                    \"type\": \"string\"\n                },\n                \"refresh_token\": {\n                    \"type\": \"string\"\n                }\n            },\n            \"required\": [\"scope\", \"access_token\", \"expires_in\", \"token_type\", \"refresh_token\"]\n        },\n        \"path\": {\n            \"type\": \"string\"\n        },\n        \"requestId\": {\n            \"type\": \"string\"\n        },\n        \"version\": {\n            \"type\": \"string\"\n        }\n    },\n    \"required\": [\"date\", \"code\", \"data\", \"path\", \"requestId\", \"version\"]\n}\n"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
