@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "724dddc8-80ef-409f-ad8f-af95649b36e1",
-		"name": "ExternalBody",
+		"_postman_id": "be3ba270-c88d-4eb8-b973-58927f939703",
+		"name": "New Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "13567395"
 	},
 	"item": [
 		{
-			"name": "externlbody",
+			"name": "Login-POST Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -23,10 +23,7 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"pm.globals.set(\"jsonbdy\", JSON.stringify(pm.iterationData.toObject()));\r",
-							"\r",
-							"console.log(pm.iterationData.toObject())\r",
-							"console.log(JSON.stringify(pm.iterationData.toObject()))"
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -38,7 +35,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{{jsonbdy}}",
+					"raw": "{\r\n    \"username\" : \"tushar.bhadane+frontdesk@thinkitive.com\",\r\n    \"password\" : \"Bluesky@123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -81,9 +78,44 @@
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
-					""
+					"//const verifyResponse = pm.require('@dark-robot-846751/validate-response');\r",
+					"\r",
+					"\r",
+					"twoDarray = pm.collectionVariables.get(\"twoDarray\")\r",
+					"console.log(twoDarray);\r",
+					"\r",
+					"// Split the input data by comma\r",
+					"const abc = twoDarray.split(',');\r",
+					"\r",
+					"// Filter out \"null\" keyword and numbers less than 100\r",
+					"const filtered_data = abc.filter(x => x !== \"null\" && (isNaN(x) || parseInt(x) >= 100));\r",
+					"\r",
+					"// Reconstruct the output string\r",
+					"const output_data = filtered_data.join(',');\r",
+					"\r",
+					"console.log(output_data);\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"/*\r",
+					"\r",
+					"\r",
+					"var ExpectedStatuscode = pm.iterationData.get(\"ExpectedStatuscode\")\r",
+					"var TestScenarioSummary = pm.iterationData.get(\"Test Scenario Summary\")\r",
+					"console.log(ExpectedStatuscode,TestScenarioSummary) \r",
+					"console.log(\"------------------------------------------------------\")\r",
+					"const parsedArray = verifyResponse.verifyResponse(ExpectedStatuscode,TestScenarioSummary)\r",
+					"*/"
 				]
 			}
+		}
+	],
+	"variable": [
+		{
+			"key": "twoDarray",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
