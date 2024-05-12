@@ -1,0 +1,22 @@
+Flag,Feature Name,RequestName,Test Scenario Summary,key1,key2,key3, key4,key5,key6,ExpectedStatuscode
+TestData,Login,POST,To validate when user enters both valid credentials username and password.,username : tushar.bhadane+frontdesk@thinkitive.com,password :Bluesky@123,,,,,200
+TestData,Login,POST,To validate when user have valid username but invalid password.,username : tushar.bhadane+frontdesk@thinkitive.com,password :Test@123,,,,,401
+TestData,Login,POST,To validate API response when user have invalid username & invalid password.,username : frontdesk@thinkitive.com,password :frontdesk@thinkitive.com,,,,,401
+TestData,Login,POST,To validate when user have invalid username but valid password.,username : frontdesk@thinkitive.com,password :Bluesky@123,,,,,401
+TestData,Patient,POST,To verify patient is adding successfully.,email :abhi@gmail.com,FirstName:Abhijit,lastName :P,Phone:2345556555,,,201
+TestData,Patient,GET,To validate newly added patient data is saved correctly and able to fetch it correctly.,,,,,,,200
+TestData,Patient,PUT,Verify able to modify patient record.,,,,,,,201
+TestData,Patient,DELETE,Able to delete the patient record successfully.,,,,,,,200
+TestData,Provider,POST,Check Provider is creating successfully.,,,,,,,201
+TestData,Provider,GET,To fetch and verify newly created provider details.,,,,,,,200
+TestData,Provider,PUT,To verify user is able to update provider details.,,,,,,,201
+TestData,Provider,DELETE,Check whether user is able to delete provider.,,,,,,,200
+TestData,Task,POST,,,,,,,,
+TestData,Task,GET,,,,,,,,
+TestData,Task,PUT,,,,,,,,
+TestData,Task,DELETE,,,,,,,,
+Run,Login,Login-POST,To validate when user enters both valid credentials username and password.,username : tushar.bhadane+frontdesk@thinkitive.com,password :Bluesky@123,,,,,200
+No-Run,Patient,Patient-POST,To verify patient is adding successfully.,email :abhi@gmail.com,FirstName:Abhijit,lastName :P,Phone:2345556555,,,201
+No-Run,Patient,GET,To validate newly added patient data is saved correctly and able to fetch it correctly.,,,,,,,200
+No-Run,Patient,PUT,Verify able to modify patient record.,,,,,,,201
+No-Run,Patient,DELETE,Able to delete the patient record successfully.,,,,,,,200

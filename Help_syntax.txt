@@ -1,89 +1,88 @@
-
-let twoDarray = [];
-let rows = pm.info.iterationCount;
-let columns = 7;
-
-// creating two-dimensional array
-for (let i = 0; i < rows; i++) {
-  twoDarray[i] = [];
-  for (let j = 0; j < columns; j++) {
-    twoDarray[i][j] = j;
-  }
-}
-
-console.log(twoDarray);
-
-pm.collectionVariables.set("twoDarray", twoDarray)
-
-
-var Flag = pm.iterationData.get("Flag")
-
-if (Flag === "TestData"){
-    console.log("skipping this request")
-    pm.execution.skipRequest()
-}
-
-console.log("Abhijit check above")
-
-//==================================================================
-/*
-
-//console.log(pm.collectionVariables.get("row_1_csvdata"))
-//console.log("Above is getting from collection variables")
-//Getting Request Name from CSV file.
-var RequestName = pm.iterationData.get("RequestName")
-//console.log(RequestName)
-
-//Current collection execution request name.
-//console.log(pm.info.requestName)
-
-//If CSV file and current collection execution is same then execute else skip execution.
-if (RequestName !== pm.info.requestName){
-    console.log("skipping this request")
-    pm.execution.skipRequest()
-}
-
-//Getting ExpectedStatuscode for current executing API from CSV file.
-
-var ExpectedStatuscode = pm.iterationData.get("ExpectedStatuscode")
-console.log(ExpectedStatuscode)        
-
-pm.collectionVariables.set("ExpectedStatuscode", ExpectedStatuscode)
-//console.log("ExpectedStatuscode set to collection variable & value is " + ExpectedStatuscode);        
-*/
-
-====================================================================================================
-
-
-Finding value in javascript 2D array :
-
-function findValueIn2DArray(array, targetValue) {
-    for (let i = 0; i < array.length; i++) {
-        for (let j = 0; j < array[i].length; j++) {
-            if (array[i][j] === targetValue) {
-                return [i, j]; // Return the indices of the value
-            }
-        }
-    }
-    return null; // Value not found
-}
-
-const myArray = [
-    [2, 45],
-    [3, 56],
-    [5, 67],
-    [8, 98],
-    [6, 89],
-    [9, 89],
-    [5, 67]
-];
-
-const target = 9;
-const result = findValueIn2DArray(myArray, target);
-console.log(result)
-if (result) {
-    const [row, col] = result;
-    console.log(`Found ${target} at row ${row} and column ${col}.`);
-} else {
-    console.log(`${target} not found in the array.`);
+{
+    "date": "2024-05-11T18:25:35.717+00:00",
+    "code": "ENTITY",
+    "message": null,
+    "data": {
+        "content": [
+            {
+                "uuid": "2e4cb78a-ed31-4a67-823a-67a090271606",
+                "email": "abhi321@gmail.com",
+                "firstName": "Abhi",
+                "lastName": "P",
+                "phone": "+912345556555",
+                "mrn": "0000339",
+                "birthDate": "1999-02-05",
+                "gender": "MALE",
+                "emergContactFirstName": "Hemant",
+                "emergContactLastName": "kaustubh",
+                "emergContactNumber": "+12333333444",
+                "messageConsent": true,
+                "callConsent": true,
+                "emailConsent": true,
+                "active": true,
+                "address": {
+                    "line1": "state street",
+                    "line2": "string",
+                    "city": "Texas",
+                    "state": "GA",
+                    "country": "US",
+                    "zipcode": "30515"
+                },
+                "insurances": [],
+                "note": null,
+                "source": null,
+                "lastVisit": null,
+                "balance": 0.0,
+                "avatar": null,
+                "intakeStatus": false,
+                "archive": false,
+                "patientScriptsureId": null,
+                "lastProvider": null,
+                "preferredPharmacy": null,
+                "referral": null,
+                "consentStatus": false,
+                "createdDate": "2024-05-11T18:24:19.396385Z"
+            },
+            {
+                "uuid": "efcef550-4980-443b-bdb4-989998df2f4d",
+                "email": "Johngnc82ziuee@gmail.com",
+                "firstName": "Anujaa",
+                "lastName": "Satputew",
+                "phone": "+912345555555",
+                "mrn": "0000338",
+                "birthDate": "1999-02-05",
+                "gender": "MALE",
+                "emergContactFirstName": "Hemant",
+                "emergContactLastName": "kaustubh",
+                "emergContactNumber": "+12333333444",
+                "messageConsent": true,
+                "callConsent": true,
+                "emailConsent": true,
+                "active": true,
+                "address": {
+                    "line1": "state street",
+                    "line2": "string",
+                    "city": "Texas",
+                    "state": "GA",
+                    "country": "US",
+                    "zipcode": "30515"
+                },
+                "insurances": [],
+                "note": null,
+                "source": null,
+                "lastVisit": null,
+                "balance": 0.0,
+                "avatar": null,
+                "intakeStatus": false,
+                "archive": true,
+                "patientScriptsureId": null,
+                "lastProvider": null,
+                "preferredPharmacy": null,
+                "referral": null,
+                "consentStatus": false,
+                "createdDate": "2024-05-10T13:49:01.303725Z"
+            },
+    "path": "/api/master/patient",
+    "requestId": "5f12c0d1-72a4-46b1-857c-895be0496271",
+    "version": "1.0"
 }

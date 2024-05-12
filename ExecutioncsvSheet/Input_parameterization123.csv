@@ -15,5 +15,5 @@ TestData,Task,POST,,,,,,,,
 TestData,Task,GET,,,,,,,,
 TestData,Task,PUT,,,,,,,,
 TestData,Task,DELETE,,,,,,,,
-Run,Login,Login-POST,To verify when user enters valid credentials.,200,tushar.bhadane+frontdesk@thinkitive.com,Bluesky@123,,,,
+Run,Login,Login-POST,To validate when user enters both valid credentials username and password.,200,tushar.bhadane+frontdesk@thinkitive.com,Bluesky@123,,,,
 TestData,Patient,Patient-POST,To verify patient is adding successfully.,201,,,abhi@gmail.com,Abhijit,P,2345556555

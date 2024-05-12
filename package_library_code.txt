@@ -1,0 +1,183 @@
+// Use module.exports to export the functions that should be
+// available to use from this package.
+// module.exports = { <your_function> }
+
+// Once exported, use this statement in your scripts to use the package.
+// const myPackage = pm.require('<package_name>')
+
+/************   Below are the functions which are present in this package library ******
+    SrNo.  ||  Function Name                ||  Description
+      1    ||  add                          || 
+      2    ||  verifyResponse               ||
+      3    ||  convertresponsetoarray       ||
+      4    ||  findValueIn2DArray           ||
+
+*/
+
+
+function add(a,b){
+    console.log(a)
+    console.log(b)
+    return a+b
+}
+
+module.exports = {
+    add,verifyResponse,findValueIn2DArray,eliminatenull,splitkey,executetest,JsonArrayTraversal
+}
+
+
+// Below code is generlise to validate response.
+
+
+function verifyResponse(request_body_array){
+    
+
+    var jsonData = pm.response.json();
+
+    JsonArrayTraversal(jsonData);
+
+    validatevalues(request_body_array,responsevaluearray)    
+         
+}
+
+
+// Finding value in javascript 2D array :
+
+function findValueIn2DArray(array, targetValue) {
+    
+    let foundflag = 0 
+    //console.log(array)
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < array[i].length; j++) {
+            if (array[i][j] === targetValue) {
+               // console.log(`Found ${targetValue} at row ${i} and column ${j}.`);
+                foundflag = 1
+
+            return [i, j]; // Return the indices of the value
+                
+            }
+        }
+    }
+    if(foundflag === 0){
+        console.log(`${targetValue} not found!!`);
+        return null; // Value not found
+    }
+}
+
+function eliminatenull(rowarray){
+//console.log("Jai Bajrangbali!!")
+//console.log(rowarray)
+
+let input_data = rowarray.toString();
+//console.log("input_data " + input_data)
+
+let data_array = input_data.split(',');
+//console.log("data_array " + data_array)
+
+// Filter out "null" keyword and numbers less than 100
+let filtered_data_array = data_array.filter(x => x !== "null" && (isNaN(x) || parseInt(x) >= 100));
+//console.log("filtered_data_array " + filtered_data_array)
+
+// Reconstruct the output string
+let output_data = filtered_data_array.join(',');
+
+const myarray = output_data.split(",")
+
+//console.log(myarray);
+//console.log("Bageshwar Dham ki jai!!!")
+return myarray
+
+}
+
+/******************************************************************* */
+//Use with below two lines
+// var Rvalue = pm.iterationData.get("key1")
+//verifyResponse.splitkey(Rvalue)
+function splitkey(key){
+
+    const Rvalue = key.split(":");
+    //console.log(Rvalue[0])
+    //console.log(Rvalue[1])
+    //console.log("Abhijit check above!!!!!!!")
+    Rvalue[1] = Rvalue[1].trim()
+    return Rvalue[1]
+
+}
+
+/******************************************************************* */
+
+function JsonArrayTraversal(object) {
+    
+    for (let key in object) {
+        if (typeof object[key] === 'object') {
+            JsonArrayTraversal(object[key]);
+            
+        } else {
+            var responsevalue = object[key]
+            //console.log(object[key]);
+            //console.log(responsevalue)
+            addvaluetoresponsearray(responsevalue)           
+        }
+    }
+}
+
+/******************************************************************* */
+
+const responsevaluearray = [];
+
+function addvaluetoresponsearray(responsevalue) {
+    
+    responsevaluearray.push(responsevalue);
+    //console.log(responsevaluearray)    
+}    
+
+
+/*************************************************************/
+
+
+/*************************************************************/
+
+function executetest() {
+
+    console.log("Great value found!!")
+}    
+
+
+/******************************************************************* */
+
+
+function validatevalues(request_body_array,responsevaluearray){
+    console.log(request_body_array)
+    console.log(responsevaluearray)
+    var hasNumber = /\d/;
+    for(var i=0;i<request_body_array.length;i++){
+
+        requestvalue = request_body_array[i]
+             
+        var found = requestvalue.indexOf("value");
+         
+        if (found !== -1){
+                
+            let valuecheck = requestvalue.split(":")
+            valuecheck[1] = valuecheck[1].replaceAll(' ', '');
+                
+            if (valuecheck[1].length !== 0){
+                console.log(valuecheck[1])
+                if(hasNumber.test(valuecheck[1]) === true ){
+                    valuecheck[1] = parseInt(valuecheck[1])
+                }
+                console.log(responsevaluearray.includes(valuecheck[1]))
+            }
+        }         
+    }
+}            
+        /*    
+                    if(valuecheck[1]=== responsevaluearray[j]){
+                    console.log(valuecheck[1] + "found in response!")
+                    }
+                }
+            }
+        }
+    */    
+
+
