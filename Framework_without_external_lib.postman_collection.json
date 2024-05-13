@@ -1,0 +1,668 @@
+{
+	"info": {
+		"_postman_id": "038f25a0-94c1-40cd-baa8-e8b83a786667",
+		"name": "Framework_without_external_lib",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26848626"
+	},
+	"item": [
+		{
+			"name": "Feature:Login",
+			"item": [
+				{
+					"name": "Login-POST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"tushar.bhadane+frontdesk@thinkitive.com\",\r\n    \"password\" : \"Bluesky@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-api.blueskytelepsychiatry.com/api/master/login",
+							"protocol": "https",
+							"host": [
+								"qa-api",
+								"blueskytelepsychiatry",
+								"com"
+							],
+							"path": [
+								"api",
+								"master",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Feature:Patient",
+			"item": [
+				{
+					"name": "Patient-POST",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{randomemail}}\",\r\n    \"firstName\": \"{{firstName}}\",\r\n    \"lastName\":\"{{lastName}}\",\r\n    \"phone\": \"+91{{phone}}\",\r\n    \"birthDate\": \"1999-02-05\",\r\n    \"gender\": \"MALE\",\r\n    \"emergContactFirstName\": \"Hemant\",\r\n    \"emergContactLastName\": \"kaustubh\",\r\n    \"emergContactNumber\": \"+12333333444\",\r\n    \"messageConsent\": true,\r\n    \"callConsent\": true,\r\n    \"emailConsent\": true,\r\n    \"active\": true,\r\n    \"address\": {\r\n        \"line1\": \"state street\",\r\n        \"line2\": \"string\",\r\n        \"city\": \"Texas\",\r\n        \"country\":\"US\",\r\n        \"state\": \"GA\",\r\n        \"zipcode\": \"30515\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-api.blueskytelepsychiatry.com/api/master/patient",
+							"protocol": "https",
+							"host": [
+								"qa-api",
+								"blueskytelepsychiatry",
+								"com"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patient-GetAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://qa-api.blueskytelepsychiatry.com/api/master/patient?page=0&size=20&sortBy=created&sortDirection=desc",
+							"protocol": "https",
+							"host": [
+								"qa-api",
+								"blueskytelepsychiatry",
+								"com"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								},
+								{
+									"key": "sortBy",
+									"value": "created"
+								},
+								{
+									"key": "sortDirection",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patient-Get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://qa-api.blueskytelepsychiatry.com/api/master/patient/{{uuid}}",
+							"protocol": "https",
+							"host": [
+								"qa-api",
+								"blueskytelepsychiatry",
+								"com"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient",
+								"{{uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patient-PUT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{randomemail}}\",\r\n    \"firstName\": \"{{updatedfirstName}}\",\r\n    \"lastName\":\"{{updatedlastName}}\",\r\n    \"phone\": \"+91{{updatedphone}}\",\r\n    \"birthDate\": \"1999-02-05\",\r\n    \"gender\": \"MALE\",\r\n    \"emergContactFirstName\": \"Hemant\",\r\n    \"emergContactLastName\": \"kaustubh\",\r\n    \"emergContactNumber\": \"+12333333444\",\r\n    \"messageConsent\": true,\r\n    \"callConsent\": true,\r\n    \"emailConsent\": true,\r\n    \"active\": true,\r\n    \"address\": {\r\n        \"line1\": \"state street\",\r\n        \"line2\": \"string\",\r\n        \"city\": \"Texas\",\r\n        \"country\":\"US\",\r\n        \"state\": \"GA\",\r\n        \"zipcode\": \"30515\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-api.blueskytelepsychiatry.com/api/master/patient/{{uuid}}/active/true",
+							"protocol": "https",
+							"host": [
+								"qa-api",
+								"blueskytelepsychiatry",
+								"com"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient",
+								"{{uuid}}",
+								"active",
+								"true"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patient-DELETE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://qa-api.blueskytelepsychiatry.com/api/master/patient/{{uuid}}",
+							"protocol": "https",
+							"host": [
+								"qa-api",
+								"blueskytelepsychiatry",
+								"com"
+							],
+							"path": [
+								"api",
+								"master",
+								"patient",
+								"{{uuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Feature:Provider",
+			"item": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"\r",
+					"//Task-1 Creation of Two dimensional array\r",
+					"if (pm.info.iteration === 0) {\r",
+					"\r",
+					"    console.clear()\r",
+					"\r",
+					"    let twoDarray = [];\r",
+					"    let rows = 200;\r",
+					"    let columns = 100;\r",
+					"\r",
+					"    // creating two-dimensional array\r",
+					"    for (let i = 0; i < rows; i++) {\r",
+					"        twoDarray[i] = [];\r",
+					"        for (let j = 0; j < columns; j++) {\r",
+					"            twoDarray[i][j] = j;\r",
+					"        }\r",
+					"    }\r",
+					"\r",
+					"    //console.log(twoDarray);\r",
+					"\r",
+					"    pm.collectionVariables.set(\"twoDarray\", twoDarray)\r",
+					"\r",
+					"}\r",
+					"\r",
+					"\r",
+					"//Task-2 Addition of all test data into twoDarray\r",
+					"\r",
+					"var Flag = pm.iterationData.get(\"Flag\")\r",
+					"//console.log(Flag)\r",
+					"\r",
+					"if (Flag === \"TestData\") {\r",
+					"\r",
+					"    //console.log(\"Test data addition is in-progress so skipping the request\")\r",
+					"\r",
+					"    twoDarray = pm.collectionVariables.get(\"twoDarray\")\r",
+					"    //console.log(twoDarray);\r",
+					"\r",
+					"    var key0 = pm.iterationData.get(\"Flag\")\r",
+					"    var key1 = pm.iterationData.get(\"Feature Name\")\r",
+					"    var key2 = pm.iterationData.get(\"RequestName\")\r",
+					"    var key3 = pm.iterationData.get(\"Test Scenario Summary\")\r",
+					"    var key4 = pm.iterationData.get(\"ExpectedStatuscode\")\r",
+					"    var key5 = pm.iterationData.get(\"key1\")\r",
+					"    var key6 = pm.iterationData.get(\"key2\")\r",
+					"    var key7 = pm.iterationData.get(\"key3\")\r",
+					"    var key8 = pm.iterationData.get(\"key4\")\r",
+					"    var key9 = pm.iterationData.get(\"key5\")\r",
+					"    var key10 = pm.iterationData.get(\"key6\")\r",
+					"    var key11 = pm.iterationData.get(\"key7\")\r",
+					"    var key12 = pm.iterationData.get(\"key8\")\r",
+					"    var key13 = pm.iterationData.get(\"key9\")\r",
+					"    var key14 = pm.iterationData.get(\"key10\")\r",
+					"    var key15 = pm.iterationData.get(\"key11\")\r",
+					"    var key16 = pm.iterationData.get(\"key12\")\r",
+					"    var key17 = pm.iterationData.get(\"key13\")\r",
+					"    var key18 = pm.iterationData.get(\"key14\")\r",
+					"    var key19 = pm.iterationData.get(\"key15\")\r",
+					"    var key20 = pm.iterationData.get(\"ResponseBody\")\r",
+					"    var RequestBody = pm.iterationData.get(\"RequestBody\")\r",
+					"    var value1 = pm.iterationData.get(\"value1\")\r",
+					"    var value2 = pm.iterationData.get(\"value2\")\r",
+					"    var value3 = pm.iterationData.get(\"value3\")\r",
+					"    var value4 = pm.iterationData.get(\"value4\")\r",
+					"    var value5 = pm.iterationData.get(\"value5\")\r",
+					"    var value6 = pm.iterationData.get(\"value6\")\r",
+					"    var value7 = pm.iterationData.get(\"value7\")\r",
+					"    var value8 = pm.iterationData.get(\"value8\")\r",
+					"    var value9 = pm.iterationData.get(\"value9\")\r",
+					"    var value10 = pm.iterationData.get(\"value10\")  \r",
+					"    \r",
+					"    \r",
+					"    \r",
+					"    \r",
+					"    //console.log(key0,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10)\r",
+					"     \r",
+					"\r",
+					"    var currentiterationNumber = pm.info.iteration\r",
+					"    //console.log(currentiterationNumber)\r",
+					"    twoDarray[currentiterationNumber][0] = \"Flag: \"+ key0;\r",
+					"    twoDarray[currentiterationNumber][1] = \"Feature Name: \" + key1;\r",
+					"    twoDarray[currentiterationNumber][2] = \"RequestName: \" + key2;\r",
+					"    twoDarray[currentiterationNumber][3] = \"Test Scenario Summary: \" + key3;\r",
+					"    twoDarray[currentiterationNumber][4] = \"ExpectedStatuscode: \" + key4;\r",
+					"    twoDarray[currentiterationNumber][5] = key5;\r",
+					"    twoDarray[currentiterationNumber][6] = key6;\r",
+					"    twoDarray[currentiterationNumber][7] = key7;\r",
+					"    twoDarray[currentiterationNumber][8] = key8;\r",
+					"    twoDarray[currentiterationNumber][9] = key9;\r",
+					"    twoDarray[currentiterationNumber][10] = key10;     \r",
+					"    twoDarray[currentiterationNumber][11] = key11;\r",
+					"    twoDarray[currentiterationNumber][12] = key12;\r",
+					"    twoDarray[currentiterationNumber][13] = key13;\r",
+					"    twoDarray[currentiterationNumber][14] = key14;\r",
+					"    twoDarray[currentiterationNumber][15] = key15;\r",
+					"    twoDarray[currentiterationNumber][16] = key16;\r",
+					"    twoDarray[currentiterationNumber][17] = key17;\r",
+					"    twoDarray[currentiterationNumber][18] = key18;\r",
+					"    twoDarray[currentiterationNumber][19] = key19;\r",
+					"    twoDarray[currentiterationNumber][20] = \"ResponseBody: \"+ key20;\r",
+					"    twoDarray[currentiterationNumber][21] = \"value1: \"+ value1;\r",
+					"    twoDarray[currentiterationNumber][22] = \"value2: \"+ value2;\r",
+					"    twoDarray[currentiterationNumber][23] = \"value3: \"+ value3;\r",
+					"    twoDarray[currentiterationNumber][24] = \"value4: \"+ value4;\r",
+					"    twoDarray[currentiterationNumber][25] = \"value5: \"+ value5;\r",
+					"    twoDarray[currentiterationNumber][26] = \"value6: \"+ value6;\r",
+					"    twoDarray[currentiterationNumber][27] = \"value7: \"+ value7;\r",
+					"    twoDarray[currentiterationNumber][28] = \"value8: \"+ value8;\r",
+					"    twoDarray[currentiterationNumber][29] = \"value9: \"+ value9;\r",
+					"    twoDarray[currentiterationNumber][30] = \"value10: \"+ value10;   \r",
+					"    twoDarray[currentiterationNumber][31] = \"RequestBody: \"+ RequestBody;\r",
+					"    \r",
+					"    \r",
+					"    pm.collectionVariables.set(\"twoDarray\", twoDarray)\r",
+					"\r",
+					"}\r",
+					"\r",
+					"//Task-3 Match Request name for execution – skip if doesnot match with input file\r",
+					"\r",
+					"var Flag = pm.iterationData.get(\"Flag\")\r",
+					"var RequestName = pm.iterationData.get(\"RequestName\")\r",
+					"//console.log(Flag)\r",
+					"\r",
+					"\r",
+					"if (Flag !== \"Run\" || RequestName !== pm.info.requestName) {\r",
+					"        \r",
+					"    //console.log(\"skipping this request since in this iteration request name is not matched\")\r",
+					"\r",
+					"    pm.execution.skipRequest()\r",
+					"    \r",
+					"}\r",
+					"\r",
+					"//Task-4 Getting ExpectedStatuscode for current executing API from CSV file.\r",
+					"if (Flag === \"Run\") {\r",
+					"    //console.log(RequestName)\r",
+					"    var ExpectedStatuscode = pm.iterationData.get(\"ExpectedStatuscode\")\r",
+					"    //console.log(ExpectedStatuscode)        \r",
+					"\r",
+					"    pm.collectionVariables.set(\"ExpectedStatuscode\", ExpectedStatuscode)\r",
+					"    //console.log(\"ExpectedStatuscode set to collection variable & value is \" + ExpectedStatuscode);        \r",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"\r",
+					"const responsevaluearray = [];\r",
+					"\r",
+					"twoDarray = pm.collectionVariables.get(\"twoDarray\")\r",
+					"\r",
+					"var targetValue = pm.iterationData.get(\"Test Scenario Summary\")\r",
+					"\r",
+					"targetValue = \"Test Scenario Summary: \"+ targetValue\r",
+					"\r",
+					"let result = findValueIn2DArray(twoDarray, targetValue)\r",
+					"\r",
+					"\r",
+					"var row = result[0]\r",
+					"\r",
+					"const request_body_array = eliminatenull(twoDarray[row])\r",
+					"\r",
+					"verifyResponse(request_body_array)\r",
+					"\r",
+					"\r",
+					"/*==============================================================*/\r",
+					"\r",
+					"\r",
+					"\r",
+					"function verifyResponse(request_body_array) {\r",
+					"\r",
+					"\r",
+					"    var jsonData = pm.response.json();\r",
+					"\r",
+					"    JsonArrayTraversal(jsonData);\r",
+					"\r",
+					"    validatevalues(request_body_array, responsevaluearray)\r",
+					"\r",
+					"}\r",
+					"\r",
+					"/******************************************************************* */\r",
+					"\r",
+					"\r",
+					"function findValueIn2DArray(array, targetValue) {\r",
+					"\r",
+					"    let foundflag = 0\r",
+					"\r",
+					"    for (let i = 0; i < array.length; i++) {\r",
+					"        for (let j = 0; j < array[i].length; j++) {\r",
+					"            if (array[i][j] === targetValue) {\r",
+					"                // console.log(`Found ${targetValue} at row ${i} and column ${j}.`);\r",
+					"                foundflag = 1\r",
+					"\r",
+					"                return [i, j]; // Return the indices of the value\r",
+					"\r",
+					"            }\r",
+					"        }\r",
+					"    }\r",
+					"    if (foundflag === 0) {\r",
+					"        console.log(`${targetValue} not found!!`);\r",
+					"        return null; // Value not found\r",
+					"    }\r",
+					"}\r",
+					"\r",
+					"/******************************************************************* */\r",
+					"\r",
+					"function eliminatenull(rowarray) {\r",
+					"\r",
+					"\r",
+					"    let input_data = rowarray.toString();\r",
+					"\r",
+					"    let data_array = input_data.split(',');\r",
+					"\r",
+					"    let filtered_data_array = data_array.filter(x => x !== \"null\" && (isNaN(x) || parseInt(x) >= 100));\r",
+					"\r",
+					"    let output_data = filtered_data_array.join(',');\r",
+					"\r",
+					"    const myarray = output_data.split(\",\")\r",
+					"\r",
+					"    return myarray\r",
+					"\r",
+					"}\r",
+					"\r",
+					"/******************************************************************* */\r",
+					"\r",
+					"function splitkey(key) {\r",
+					"\r",
+					"    const Rvalue = key.split(\":\");\r",
+					"    Rvalue[1] = Rvalue[1].trim()\r",
+					"    return Rvalue[1]\r",
+					"\r",
+					"}\r",
+					"\r",
+					"/******************************************************************* */\r",
+					"\r",
+					"function JsonArrayTraversal(object) {\r",
+					"\r",
+					"    for (let key in object) {\r",
+					"        if (typeof object[key] === 'object') {\r",
+					"            JsonArrayTraversal(object[key]);\r",
+					"\r",
+					"        } else {\r",
+					"            var responsevalue = object[key]\r",
+					"\r",
+					"            addvaluetoresponsearray(responsevalue)\r",
+					"        }\r",
+					"    }\r",
+					"}\r",
+					"\r",
+					"/******************************************************************* */\r",
+					"\r",
+					"\r",
+					"\r",
+					"function addvaluetoresponsearray(responsevalue) {\r",
+					"    \r",
+					"    responsevaluearray.push(responsevalue);\r",
+					"\r",
+					"}\r",
+					"\r",
+					"\r",
+					"/*************************************************************/\r",
+					"\r",
+					"function executetest() {\r",
+					"\r",
+					"    console.log(\"Great value found!!\")\r",
+					"}\r",
+					"\r",
+					"\r",
+					"/******************************************************************* */\r",
+					"\r",
+					"\r",
+					"function validatevalues(request_body_array, responsevaluearray) {\r",
+					"        let TestScenarioSummary = request_body_array[3].split(\":\")\r",
+					"                       \r",
+					"    var hasNumber = /\\d/;\r",
+					"\r",
+					"    for (var i = 0; i < request_body_array.length; i++) {\r",
+					"\r",
+					"        requestvalue = request_body_array[i]\r",
+					"\r",
+					"        var found = requestvalue.indexOf(\"value\");\r",
+					"\r",
+					"        if (found !== -1) {\r",
+					"\r",
+					"            let valuecheck = requestvalue.split(\":\")\r",
+					"            valuecheck[1] = valuecheck[1].replaceAll(' ', '');\r",
+					"\r",
+					"            if (valuecheck[1].length !== 0) {\r",
+					"\r",
+					"                if (hasNumber.test(valuecheck[1]) === true) {\r",
+					"                    valuecheck[1] = parseInt(valuecheck[1])\r",
+					"                }\r",
+					"                \r",
+					"                pm.test(TestScenarioSummary[1], function() {\r",
+					"                    \r",
+					"                    console.log(\"To Check \" + valuecheck[1] + \" value in response\")\r",
+					"                    pm.expect(pm.response.text()).to.include(valuecheck[1]);\r",
+					"\r",
+					"                });\r",
+					"                \r",
+					"                \r",
+					"            }\r",
+					"        }\r",
+					"\r",
+					"        var ExpectedStatuscode = requestvalue.indexOf(\"ExpectedStatuscode\");\r",
+					"\r",
+					"        if (ExpectedStatuscode !== -1) {\r",
+					"\r",
+					"            let valuecheck = requestvalue.split(\":\")\r",
+					"\r",
+					"            valuecheck[1] = valuecheck[1].replaceAll(' ', '');\r",
+					"\r",
+					"            if (valuecheck[1].length !== 0) {\r",
+					"\r",
+					"                if (hasNumber.test(valuecheck[1]) === true) {\r",
+					"                    valuecheck[1] = parseInt(valuecheck[1])\r",
+					"                }\r",
+					"\r",
+					"                pm.test(\"Verify expected statuscode in response\", function() {\r",
+					"\r",
+					"                    pm.response.to.have.status(valuecheck[1])\r",
+					"\r",
+					"                });\r",
+					"            }\r",
+					"\r",
+					"        }\r",
+					"\r",
+					"    }\r",
+					"}\r",
+					"/******************************************************************* */\r",
+					"\r",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "twoDarray",
+			"value": ""
+		},
+		{
+			"key": "ExpectedStatuscode",
+			"value": ""
+		}
+	]
+}
