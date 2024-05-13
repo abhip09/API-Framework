@@ -1,2 +1,0 @@
-Flag,Feature Name,RequestName,Test Scenario Summary,ExpectedStatuscode,username ,password  ,email ,firstName ,lastName ,phone 
-TestData,Login,Login-POST,To validate when user enters both valid credentials username and password.,200,tushar.bhadane+frontdesk@thinkitive.com,Bluesky@123,,,,

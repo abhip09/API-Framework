@@ -158,8 +158,9 @@ function validatevalues(request_body_array, responsevaluearray) {
                 }
                 
                 pm.test(TestScenarioSummary[1], function() {
-                    pm.expect(pm.response.text()).to.include(valuecheck[1]);
+                    
                     console.log("To Check " + valuecheck[1] + " value in response")
+                    pm.expect(pm.response.text()).to.include(valuecheck[1]);
 
                 });
                 

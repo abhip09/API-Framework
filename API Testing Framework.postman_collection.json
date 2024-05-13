@@ -469,7 +469,6 @@
 					}
 				},
 				"exec": [
-					"// importing package library - apl\r",
 					"\r",
 					"const apl = pm.require('@blue-moon-300114/validate-response');\r",
 					"\r",
